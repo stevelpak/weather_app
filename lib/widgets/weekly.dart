@@ -7,6 +7,13 @@ Widget weeklyButton(String day, int date, String month, String icon, int temp,
   Color dayColor = isActive ? white : topCityColor;
   Color tempColor = isActive ? dateTextColor : topCityColor;
   Color currColor = isActive ? dateTextColor : notActiveDateColor;
+  Color currHumClr = humidityGoodClr;
+
+  if (hum > 40 && hum < 60) {
+    currHumClr = humidityHmColor;
+  } else if (hum > 60) {
+    currHumClr = humidityBadClrg;
+  }
 
   return Container(
     margin: const EdgeInsets.symmetric(horizontal: 10),
@@ -50,7 +57,7 @@ Widget weeklyButton(String day, int date, String month, String icon, int temp,
         Container(
           padding: const EdgeInsets.all(4),
           decoration: BoxDecoration(
-            color: humidityColor,
+            color: currHumClr,
             borderRadius: BorderRadius.circular(8),
           ),
           child: Text(

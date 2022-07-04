@@ -124,7 +124,7 @@ class _HomePageState extends State<HomePage> {
                       Column(
                         children: [
                           Padding(
-                            padding: const EdgeInsets.only(top: 100, left: 20),
+                            padding: const EdgeInsets.only(top: 120, left: 20),
                             child: Text(
                               "Sunny",
                               style: TextStyle(
@@ -136,31 +136,37 @@ class _HomePageState extends State<HomePage> {
                           ),
                         ],
                       ),
-                      Column(
-                        children: [
-                          Text(
-                            "Today\n2 July",
-                            style: TextStyle(
-                              color: white,
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
+                      Padding(
+                        padding: const EdgeInsets.only(right: 20),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            Text(
+                              "Today\n2 July",
+                              style: TextStyle(
+                                color: white,
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
-                          ),
-                          GradientText(
-                            "21°",
-                            gradient: textGradient,
-                            style: const TextStyle(
-                                fontSize: 75, fontWeight: FontWeight.bold),
-                          ),
-                          Text(
-                            "Cleared 26°",
-                            style: TextStyle(
-                              color: white,
-                              fontSize: 15,
+                            GradientText(
+                              "21°",
+                              gradient: textGradient,
+                              style: const TextStyle(
+                                fontSize: 75,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
-                          )
-                        ],
-                      ),
+                            Text(
+                              "Cleared 26°",
+                              style: TextStyle(
+                                color: white,
+                                fontSize: 15,
+                              ),
+                            )
+                          ],
+                        ),
+                      )
                     ],
                   ),
                 ),
@@ -274,7 +280,7 @@ class _HomePageState extends State<HomePage> {
                 children: [
                   weeklyButton("Mon", 3, "Jul", "cloudy", 23, 10, true),
                   weeklyButton("Tue", 4, "Jul", "sunny", 33, 2, false),
-                  weeklyButton("Wed", 5, "Jul", "sunny", 30, 12, false),
+                  weeklyButton("Wed", 5, "Jul", "sunny", 30, 42, false),
                   weeklyButton("Thu", 6, "Jul", "suncloud", 20, 72, false),
                 ],
               ),
