@@ -57,9 +57,9 @@ class _HomePageState extends State<HomePage> {
                       label: Text(
                         "Fergana",
                         style: TextStyle(
-                          fontSize: 20,
-                          color: topCityColor,
-                        ),
+                            fontSize: 20,
+                            color: topCityColor,
+                            fontWeight: FontWeight.bold),
                       ),
                     ),
                     Container(
@@ -101,57 +101,77 @@ class _HomePageState extends State<HomePage> {
                 )
               ],
             ),
-            Container(
-              padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 5),
-              margin: const EdgeInsets.only(top: 30),
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(33),
-                  gradient: stateGradient,
-                  boxShadow: const [
-                    BoxShadow(
+            Stack(
+              children: [
+                Container(
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 15, horizontal: 5),
+                  margin: const EdgeInsets.only(top: 30),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(33),
+                    gradient: stateGradient,
+                    boxShadow: const [
+                      BoxShadow(
                         color: Color.fromRGBO(82, 100, 240, 0.31),
                         offset: Offset(10, 15),
-                        blurRadius: 30)
-                  ]),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Column(
-                    children: [
-                      Image.asset(
-                        "assets/states/sunrain.png",
-                        scale: 4,
-                      ),
-                      Text(
-                        "Sunny",
-                        style: TextStyle(
-                          fontSize: 26,
-                          fontWeight: FontWeight.bold,
-                          color: white,
-                        ),
-                      ),
-                    ],
-                  ),
-                  Column(
-                    children: [
-                      Text(
-                        "Today\n2 July",
-                        style: TextStyle(
-                          color: white,
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      GradientText(
-                        "21°",
-                        gradient: textGradient,
-                        style: const TextStyle(
-                            fontSize: 75, fontWeight: FontWeight.bold),
+                        blurRadius: 30,
                       )
                     ],
                   ),
-                ],
-              ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Column(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(top: 100, left: 20),
+                            child: Text(
+                              "Sunny",
+                              style: TextStyle(
+                                fontSize: 26,
+                                fontWeight: FontWeight.bold,
+                                color: white,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Column(
+                        children: [
+                          Text(
+                            "Today\n2 July",
+                            style: TextStyle(
+                              color: white,
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          GradientText(
+                            "21°",
+                            gradient: textGradient,
+                            style: const TextStyle(
+                                fontSize: 75, fontWeight: FontWeight.bold),
+                          ),
+                          Text(
+                            "Cleared 26°",
+                            style: TextStyle(
+                              color: white,
+                              fontSize: 15,
+                            ),
+                          )
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 20),
+                  child: Image.asset(
+                    "assets/states/sunrain.png",
+                    scale: 3.5,
+                  ),
+                ),
+              ],
             ),
             Container(
               margin: const EdgeInsets.symmetric(vertical: 20),
