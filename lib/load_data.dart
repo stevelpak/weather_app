@@ -2,41 +2,39 @@ import 'package:http/http.dart';
 import 'package:html/parser.dart';
 import 'package:weather/models/weather_model.dart';
 
-String? temp, rain, wind, pess, moon, sun, sunset, day1;
+final List<WeatherModel> listweather = [];
 
-void main(List<String> args) async {
-  await Weather().loadData();
-}
+Future<bool?> loadData() async {
+  var model = WeatherModel();
+  var response = await get(Uri.parse("https://obhavo.uz/ferghana"));
 
-class Weather {
-  Future loadData() async {
-    var response = await get(Uri.parse("https://obhavo.uz/ferghana"));
+  if (response.statusCode == 200) {
+    var document = parse(response.body);
 
-    if (response.statusCode == 200) {
-      var document = parse(response.body);
+    var tempDoc = document.getElementsByClassName("current-forecast")[0];
+    var docDetails = document
+        .getElementsByClassName("current-forecast-details")[0]
+        .querySelectorAll('p');
 
-      var docDetails = document
-          .getElementsByClassName("current-forecast-details")[0]
-          .querySelectorAll('p');
-      day1 = document
-          .getElementsByClassName("weather-row-forecast")[0]
-          .querySelectorAll('span')[0]
-          .text;
+    model.temp = tempDoc.querySelectorAll('strong')[0].text.substring(1);
+    model.rain = docDetails[0].text.substring(8);
+    model.wind = docDetails[1].text.substring(8);
+    model.pess = docDetails[2].text.substring(7, 11);
+    model.moon = docDetails[3].text.substring(4);
+    model.sun = docDetails[4].text.substring(17);
+    model.sunset = docDetails[5].text.substring(16);
+    model.tempNight = tempDoc.querySelectorAll('span')[2].text.substring(1);
+    model.curDay = document
+        .getElementsByClassName("current-day")[0]
+        .text
+        .toString()
+        .substring(6);
+    model.desc =
+        document.getElementsByClassName("current-forecast-desc")[0].text;
 
-      temp = document
-          .getElementsByClassName("current-forecast-day")[0]
-          .querySelectorAll('p')[5]
-          .text;
-      rain = docDetails[0].text.substring(8);
-      wind = docDetails[1].text.substring(8);
-      pess = docDetails[2].text.substring(7);
-      moon = docDetails[3].text.substring(4);
-      sun = docDetails[4].text.substring(17);
-      sunset = docDetails[5].text.substring(16);
-    }
-  }
-
-  String? exportData() {
-    return day1;
+    listweather.add(model);
+    return true;
+  } else {
+    return false;
   }
 }

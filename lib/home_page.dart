@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:http/http.dart';
-import 'package:html/parser.dart';
 
-import 'package:weather/models/weather_model.dart';
 import 'package:weather/utils/constants.dart';
 import 'package:weather/widgets/weekly.dart';
 import 'package:weather/widgets/info_con.dart';
+import 'package:weather/load_data.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -15,41 +13,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final List<WeatherModel> _listweather = [];
-
-  Future<bool?> loadData() async {
-    var model = WeatherModel();
-    var response = await get(Uri.parse("https://obhavo.uz/ferghana"));
-
-    if (response.statusCode == 200) {
-      var document = parse(response.body);
-
-      var tempDoc = document.getElementsByClassName("current-forecast")[0];
-      var docDetails = document
-          .getElementsByClassName("current-forecast-details")[0]
-          .querySelectorAll('p');
-
-      model.temp = tempDoc.querySelectorAll('strong')[0].text.substring(1);
-      model.rain = docDetails[0].text.substring(8);
-      model.wind = docDetails[1].text.substring(8);
-      model.pess = docDetails[2].text.substring(7, 11);
-      model.moon = docDetails[3].text.substring(4);
-      model.sun = docDetails[4].text.substring(17);
-      model.sunset = docDetails[5].text.substring(16);
-      model.tempNight = tempDoc.querySelectorAll('span')[2].text.substring(1);
-      model.curDay = document
-          .getElementsByClassName("current-day")[0]
-          .text
-          .toString()
-          .substring(6);
-      model.desc =
-          document.getElementsByClassName("current-forecast-desc")[0].text;
-
-      _listweather.add(model);
-      return true;
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -65,7 +28,7 @@ class _HomePageState extends State<HomePage> {
               gradient: bgGradient,
             ),
             child: FutureBuilder(
-              future: _listweather.isEmpty ? loadData() : null,
+              future: listweather.isEmpty ? loadData() : null,
               builder: ((context, snapshot) {
                 if (snapshot.hasData) {
                   return Column(
@@ -169,7 +132,7 @@ class _HomePageState extends State<HomePage> {
                                       padding: const EdgeInsets.only(
                                           top: 120, left: 20),
                                       child: Text(
-                                        _listweather[0].desc!,
+                                        listweather[0].desc!,
                                         style: TextStyle(
                                           fontSize: 24,
                                           fontWeight: FontWeight.bold,
@@ -185,7 +148,7 @@ class _HomePageState extends State<HomePage> {
                                     crossAxisAlignment: CrossAxisAlignment.end,
                                     children: [
                                       Text(
-                                        "Bugun\n${_listweather[0].curDay}",
+                                        "Bugun\n${listweather[0].curDay}",
                                         style: TextStyle(
                                           color: white,
                                           fontSize: 16,
@@ -193,7 +156,7 @@ class _HomePageState extends State<HomePage> {
                                         ),
                                       ),
                                       GradientText(
-                                        _listweather[0].temp!,
+                                        listweather[0].temp!,
                                         gradient: textGradient,
                                         style: const TextStyle(
                                           fontSize: 75,
@@ -201,7 +164,7 @@ class _HomePageState extends State<HomePage> {
                                         ),
                                       ),
                                       Text(
-                                        "${_listweather[0].desc} ${_listweather[0].tempNight}",
+                                        "${listweather[0].desc} ${listweather[0].tempNight}",
                                         style: TextStyle(
                                           color: white,
                                           fontSize: 15,
@@ -294,11 +257,11 @@ class _HomePageState extends State<HomePage> {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   infoContainer(
-                                      "pess", "Bosim", _listweather[0].pess!),
+                                      "pess", "Bosim", listweather[0].pess!),
                                   infoContainer(
-                                      "wind", "Shamol", _listweather[0].wind!),
+                                      "wind", "Shamol", listweather[0].wind!),
                                   infoContainer(
-                                      "sun", "Quyosh ch", _listweather[0].sun!)
+                                      "sun", "Quyosh ch", listweather[0].sun!)
                                 ],
                               ),
                             ),
@@ -306,11 +269,11 @@ class _HomePageState extends State<HomePage> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 infoContainer(
-                                    "rain", "Namlik", _listweather[0].rain!),
+                                    "rain", "Namlik", listweather[0].rain!),
                                 infoContainer(
-                                    "moon", "Oy", _listweather[0].moon!),
+                                    "moon", "Oy", listweather[0].moon!),
                                 infoContainer("sunset", "Quyosh b",
-                                    _listweather[0].sunset!),
+                                    listweather[0].sunset!),
                               ],
                             ),
                           ],
