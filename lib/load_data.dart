@@ -21,6 +21,7 @@ Future<bool?> loadData(String city) async {
         .querySelectorAll('p');
     var wkDoc = document.getElementsByClassName("weather-row-day-short");
     var wkTemp = document.getElementsByClassName('weather-row-forecast');
+    var wkRain = document.getElementsByClassName("weather-row-pop");
 
     model.temp = tempDoc.querySelectorAll('strong')[0].text.substring(1);
     model.rain = docDetails[0].text.substring(8);
@@ -48,6 +49,7 @@ Future<bool?> loadData(String city) async {
           .text
           .trim();
       listweekly.add(wkModel);
+      wkModel.rainPer = wkRain[i + 1].text.trim().split("%")[0];
     }
 
     listweather.add(model);

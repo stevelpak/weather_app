@@ -1,11 +1,12 @@
 class WeeklyModel {
-  String? day, date, temp, desc;
+  String? day, date, temp, desc, rainPer;
 
   WeeklyModel({
     this.day,
     this.date,
     this.temp,
     this.desc,
+    this.rainPer,
   });
 
   WeeklyModel.fromJson(Map<String, dynamic> json) {
