@@ -6,9 +6,10 @@ import 'package:weather/models/weekly_model.dart';
 final List<WeatherModel> listweather = [];
 final List<WeeklyModel> listweekly = [];
 
-Future<bool?> loadData() async {
+Future<bool?> loadData(String city) async {
   var model = WeatherModel();
-  var response = await get(Uri.parse("https://obhavo.uz/ferghana"));
+  var response =
+      await get(Uri.parse("https://obhavo.uz/${city.toLowerCase()}"));
 
   if (response.statusCode == 200) {
     var document = parse(response.body);
@@ -41,6 +42,10 @@ Future<bool?> loadData() async {
       wkModel.day = wkDoc[i + 1].querySelectorAll('strong')[0].text;
       wkModel.date = wkDoc[i + 1].querySelectorAll('div')[0].text;
       wkModel.temp = wkTemp[i].querySelectorAll('span')[0].text;
+      wkModel.desc = document
+          .getElementsByClassName('weather-row-desc')[i + 1]
+          .text
+          .trim();
       listweekly.add(wkModel);
     }
 

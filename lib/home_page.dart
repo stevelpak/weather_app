@@ -31,7 +31,14 @@ class _HomePageState extends State<HomePage> {
     'Khiva',
   ];
 
-  String dropDownValue = 'Tashkent';
+  Map<String, String> wtypes = {
+    "ochiq havo": "ic_sunny",
+    "bulutli": "ic_mist",
+    "yomg'ir": "ic_rain",
+  };
+
+  String dropDownValue = 'Ferghana';
+  bool _pressed = false;
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +51,7 @@ class _HomePageState extends State<HomePage> {
               gradient: bgGradient,
             ),
             child: FutureBuilder(
-              future: listweather.isEmpty ? loadData() : null,
+              future: listweather.isEmpty ? loadData(dropDownValue) : null,
               builder: ((context, snapshot) {
                 if (snapshot.hasData) {
                   return ListView(
@@ -93,6 +100,7 @@ class _HomePageState extends State<HomePage> {
                                   onChanged: (String? newValue) {
                                     setState(() {
                                       dropDownValue = newValue!;
+                                      loadData(dropDownValue);
                                     });
                                   },
                                 ),
@@ -210,8 +218,8 @@ class _HomePageState extends State<HomePage> {
                           Padding(
                             padding: const EdgeInsets.only(left: 20),
                             child: Image.asset(
-                              "assets/states/sunrain.png",
-                              scale: 3.5,
+                              "assets/states/${wtypes[listweather[0].desc!.toLowerCase()]}.png",
+                              scale: 2,
                             ),
                           ),
                         ],
@@ -258,6 +266,9 @@ class _HomePageState extends State<HomePage> {
                                     ],
                                   ),
                                   InkWell(
+                                    onTap: () => setState(() {
+                                      loadData(dropDownValue);
+                                    }),
                                     child: Container(
                                       width: 35,
                                       height: 35,
@@ -327,55 +338,90 @@ class _HomePageState extends State<HomePage> {
                         child: ListView(
                           scrollDirection: Axis.horizontal,
                           children: [
-                            weeklyButton(
-                                listweekly[0].day!,
-                                listweekly[0].date!,
-                                "cloudy",
-                                listweekly[0].temp!,
-                                10,
-                                true),
-                            weeklyButton(
-                                listweekly[1].day!,
-                                listweekly[1].date!,
-                                "sunny",
-                                listweekly[1].temp!,
-                                2,
-                                false),
-                            weeklyButton(
-                                listweekly[2].day!,
-                                listweekly[2].date!,
-                                "sunny",
-                                listweekly[2].temp!,
-                                42,
-                                false),
-                            weeklyButton(
-                                listweekly[3].day!,
-                                listweekly[3].date!,
-                                "suncloud",
-                                listweekly[3].temp!,
-                                72,
-                                false),
-                            weeklyButton(
-                                listweekly[4].day!,
-                                listweekly[4].date!,
-                                "suncloud",
-                                listweekly[4].temp!,
-                                72,
-                                false),
-                            weeklyButton(
-                                listweekly[5].day!,
-                                listweekly[5].date!,
-                                "suncloud",
-                                listweekly[5].temp!,
-                                72,
-                                false),
-                            weeklyButton(
-                                listweekly[6].day!,
-                                listweekly[6].date!,
-                                "suncloud",
-                                listweekly[6].temp!,
-                                72,
-                                false),
+                            InkWell(
+                              onTap: () => setState(() {
+                                _pressed = !_pressed;
+                              }),
+                              child: weeklyButton(
+                                  listweekly[0].day!,
+                                  listweekly[0].date!,
+                                  "${wtypes[listweekly[0].desc!.toLowerCase()]}",
+                                  listweekly[0].temp!,
+                                  10,
+                                  _pressed),
+                            ),
+                            InkWell(
+                              onTap: () => setState(() {
+                                _pressed = !_pressed;
+                              }),
+                              child: weeklyButton(
+                                  listweekly[1].day!,
+                                  listweekly[1].date!,
+                                  "${wtypes[listweekly[1].desc!.toLowerCase()]}",
+                                  listweekly[1].temp!,
+                                  2,
+                                  _pressed),
+                            ),
+                            InkWell(
+                              onTap: () => setState(() {
+                                _pressed = !_pressed;
+                              }),
+                              child: weeklyButton(
+                                  listweekly[2].day!,
+                                  listweekly[2].date!,
+                                  "${wtypes[listweekly[2].desc!.toLowerCase()]}",
+                                  listweekly[2].temp!,
+                                  2,
+                                  _pressed),
+                            ),
+                            InkWell(
+                              onTap: () => setState(() {
+                                _pressed = !_pressed;
+                              }),
+                              child: weeklyButton(
+                                  listweekly[3].day!,
+                                  listweekly[3].date!,
+                                  "${wtypes[listweekly[3].desc!.toLowerCase()]}",
+                                  listweekly[3].temp!,
+                                  2,
+                                  _pressed),
+                            ),
+                            InkWell(
+                              onTap: () => setState(() {
+                                _pressed = !_pressed;
+                              }),
+                              child: weeklyButton(
+                                  listweekly[4].day!,
+                                  listweekly[4].date!,
+                                  "${wtypes[listweekly[4].desc!.toLowerCase()]}",
+                                  listweekly[4].temp!,
+                                  2,
+                                  _pressed),
+                            ),
+                            InkWell(
+                              onTap: () => setState(() {
+                                _pressed = !_pressed;
+                              }),
+                              child: weeklyButton(
+                                  listweekly[5].day!,
+                                  listweekly[5].date!,
+                                  "${wtypes[listweekly[5].desc!.toLowerCase()]}",
+                                  listweekly[5].temp!,
+                                  2,
+                                  _pressed),
+                            ),
+                            InkWell(
+                              onTap: () => setState(() {
+                                _pressed = !_pressed;
+                              }),
+                              child: weeklyButton(
+                                  listweekly[6].day!,
+                                  listweekly[6].date!,
+                                  "${wtypes[listweekly[6].desc!.toLowerCase()]}",
+                                  listweekly[6].temp!,
+                                  2,
+                                  _pressed),
+                            ),
                           ],
                         ),
                       )

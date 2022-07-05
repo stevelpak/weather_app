@@ -42,7 +42,7 @@ Widget weeklyButton(
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 15),
           child: Image.asset(
-            "assets/types/$icon.png",
+            "assets/states/$icon.png",
             width: 40,
           ),
         ),
