@@ -7,6 +7,7 @@ final List<WeatherModel> listweather = [];
 final List<WeeklyModel> listweekly = [];
 
 Future<bool?> loadData(String city) async {
+  listweekly.clear();
   var model = WeatherModel();
   var response =
       await get(Uri.parse("https://obhavo.uz/${city.toLowerCase()}"));

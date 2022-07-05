@@ -53,7 +53,7 @@ class _HomePageState extends State<HomePage> {
             child: FutureBuilder(
               future: listweather.isEmpty ? loadData(dropDownValue) : null,
               builder: ((context, snapshot) {
-                if (snapshot.hasData) {
+                if (snapshot.hasData && listweather.isNotEmpty) {
                   return Column(
                     children: [
                       Padding(
@@ -99,7 +99,7 @@ class _HomePageState extends State<HomePage> {
                                     onChanged: (String? newValue) {
                                       setState(() {
                                         dropDownValue = newValue!;
-                                        loadData(dropDownValue);
+                                        listweather.clear();
                                       });
                                     },
                                   ),
@@ -356,7 +356,7 @@ class _HomePageState extends State<HomePage> {
                                       listweekly[0].date!,
                                       "${wtypes[listweekly[0].desc!.toLowerCase()]}",
                                       listweekly[0].temp!,
-                                      10,
+                                      17,
                                       _pressed),
                                 ),
                                 InkWell(
@@ -368,7 +368,7 @@ class _HomePageState extends State<HomePage> {
                                       listweekly[1].date!,
                                       "${wtypes[listweekly[1].desc!.toLowerCase()]}",
                                       listweekly[1].temp!,
-                                      2,
+                                      25,
                                       _pressed),
                                 ),
                                 InkWell(
@@ -380,7 +380,7 @@ class _HomePageState extends State<HomePage> {
                                       listweekly[2].date!,
                                       "${wtypes[listweekly[2].desc!.toLowerCase()]}",
                                       listweekly[2].temp!,
-                                      2,
+                                      20,
                                       _pressed),
                                 ),
                                 InkWell(
@@ -392,7 +392,7 @@ class _HomePageState extends State<HomePage> {
                                       listweekly[3].date!,
                                       "${wtypes[listweekly[3].desc!.toLowerCase()]}",
                                       listweekly[3].temp!,
-                                      2,
+                                      12,
                                       _pressed),
                                 ),
                                 InkWell(
@@ -404,7 +404,7 @@ class _HomePageState extends State<HomePage> {
                                       listweekly[4].date!,
                                       "${wtypes[listweekly[4].desc!.toLowerCase()]}",
                                       listweekly[4].temp!,
-                                      2,
+                                      24,
                                       _pressed),
                                 ),
                                 InkWell(
@@ -416,7 +416,7 @@ class _HomePageState extends State<HomePage> {
                                       listweekly[5].date!,
                                       "${wtypes[listweekly[5].desc!.toLowerCase()]}",
                                       listweekly[5].temp!,
-                                      2,
+                                      32,
                                       _pressed),
                                 ),
                                 InkWell(
@@ -428,7 +428,7 @@ class _HomePageState extends State<HomePage> {
                                       listweekly[6].date!,
                                       "${wtypes[listweekly[6].desc!.toLowerCase()]}",
                                       listweekly[6].temp!,
-                                      2,
+                                      15,
                                       _pressed),
                                 ),
                               ],
