@@ -13,6 +13,24 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final items = [
+    'tashkent',
+    'andijan',
+    'bukhara',
+    'gulistan',
+    'jizzakh',
+    'zarafshan',
+    'karshi',
+    'navoi',
+    'namangan',
+    'nukus',
+    'samarkand',
+    'termez',
+    'urgench',
+    'ferghana',
+    'khiva',
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,10 +38,6 @@ class _HomePageState extends State<HomePage> {
         child: Container(
             height: double.infinity,
             width: double.infinity,
-            padding: const EdgeInsets.symmetric(
-              horizontal: 25,
-              vertical: 20,
-            ),
             decoration: BoxDecoration(
               gradient: bgGradient,
             ),
@@ -31,7 +45,11 @@ class _HomePageState extends State<HomePage> {
               future: listweather.isEmpty ? loadData() : null,
               builder: ((context, snapshot) {
                 if (snapshot.hasData) {
-                  return Column(
+                  return ListView(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 20,
+                      vertical: 20,
+                    ),
                     children: [
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -62,9 +80,10 @@ class _HomePageState extends State<HomePage> {
                                 label: Text(
                                   "Fergana",
                                   style: TextStyle(
-                                      fontSize: 20,
-                                      color: topCityColor,
-                                      fontWeight: FontWeight.bold),
+                                    fontSize: 20,
+                                    color: topCityColor,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
                               ),
                               Container(
@@ -86,6 +105,7 @@ class _HomePageState extends State<HomePage> {
                             ],
                           ),
                           InkWell(
+                            onTap: (() {}),
                             child: Container(
                               height: 50,
                               width: 50,
@@ -159,7 +179,7 @@ class _HomePageState extends State<HomePage> {
                                         listweather[0].temp!,
                                         gradient: textGradient,
                                         style: const TextStyle(
-                                          fontSize: 75,
+                                          fontSize: 60,
                                           fontWeight: FontWeight.bold,
                                         ),
                                       ),
@@ -297,13 +317,54 @@ class _HomePageState extends State<HomePage> {
                           scrollDirection: Axis.horizontal,
                           children: [
                             weeklyButton(
-                                "Mon", 3, "Jul", "cloudy", 23, 10, true),
+                                listweekly[0].day!,
+                                listweekly[0].date!,
+                                "cloudy",
+                                listweekly[0].temp!,
+                                10,
+                                true),
                             weeklyButton(
-                                "Tue", 4, "Jul", "sunny", 33, 2, false),
+                                listweekly[1].day!,
+                                listweekly[1].date!,
+                                "sunny",
+                                listweekly[0].temp!,
+                                2,
+                                false),
                             weeklyButton(
-                                "Wed", 5, "Jul", "sunny", 30, 42, false),
+                                listweekly[2].day!,
+                                listweekly[2].date!,
+                                "sunny",
+                                listweekly[0].temp!,
+                                42,
+                                false),
                             weeklyButton(
-                                "Thu", 6, "Jul", "suncloud", 20, 72, false),
+                                listweekly[3].day!,
+                                listweekly[3].date!,
+                                "suncloud",
+                                listweekly[0].temp!,
+                                72,
+                                false),
+                            weeklyButton(
+                                listweekly[3].day!,
+                                listweekly[3].date!,
+                                "suncloud",
+                                listweekly[0].temp!,
+                                72,
+                                false),
+                            weeklyButton(
+                                listweekly[3].day!,
+                                listweekly[3].date!,
+                                "suncloud",
+                                listweekly[0].temp!,
+                                72,
+                                false),
+                            weeklyButton(
+                                listweekly[3].day!,
+                                listweekly[3].date!,
+                                "suncloud",
+                                listweekly[0].temp!,
+                                72,
+                                false),
                           ],
                         ),
                       )

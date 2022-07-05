@@ -1,5 +1,6 @@
 class WeatherModel {
   String? temp, rain, wind, pess, moon, sun, sunset, tempNight, curDay, desc;
+  List? weeklyForecast;
 
   WeatherModel({
     this.temp,
@@ -12,6 +13,7 @@ class WeatherModel {
     this.tempNight,
     this.curDay,
     this.desc,
+    this.weeklyForecast,
   });
 
   WeatherModel.fromJson(Map<String, dynamic> json) {

@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:weather/utils/constants.dart';
 
-Widget weeklyButton(String day, int date, String month, String icon, int temp,
-    int hum, bool isActive) {
+Widget weeklyButton(
+    String day, String dm, String icon, String temp, int hum, bool isActive) {
   BoxDecoration currDec = isActive ? activeDay : noActiveDay;
   Color dayColor = isActive ? white : topCityColor;
   Color tempColor = isActive ? dateTextColor : topCityColor;
@@ -33,7 +33,7 @@ Widget weeklyButton(String day, int date, String month, String icon, int temp,
           ),
         ),
         Text(
-          "0$date $month",
+          dm,
           style: TextStyle(
             color: currColor,
             fontSize: 10,
@@ -49,7 +49,7 @@ Widget weeklyButton(String day, int date, String month, String icon, int temp,
         Padding(
           padding: const EdgeInsets.only(bottom: 10),
           child: Text(
-            "$temp°",
+            temp,
             style: TextStyle(
                 color: tempColor, fontSize: 22, fontWeight: FontWeight.bold),
           ),

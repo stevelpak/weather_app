@@ -1,11 +1,14 @@
 import 'package:http/http.dart';
 import 'package:html/parser.dart';
 import 'package:weather/models/weather_model.dart';
+import 'package:weather/models/weekly_model.dart';
 
 final List<WeatherModel> listweather = [];
+final List<WeeklyModel> listweekly = [];
 
 Future<bool?> loadData() async {
   var model = WeatherModel();
+  var wkModel = WeeklyModel();
   var response = await get(Uri.parse("https://obhavo.uz/ferghana"));
 
   if (response.statusCode == 200) {
@@ -15,6 +18,8 @@ Future<bool?> loadData() async {
     var docDetails = document
         .getElementsByClassName("current-forecast-details")[0]
         .querySelectorAll('p');
+    var wkDoc = document.getElementsByClassName("weather-row-day-short");
+    var wkTemp = document.getElementsByClassName('weather-row-forecast');
 
     model.temp = tempDoc.querySelectorAll('strong')[0].text.substring(1);
     model.rain = docDetails[0].text.substring(8);
@@ -31,6 +36,13 @@ Future<bool?> loadData() async {
         .substring(6);
     model.desc =
         document.getElementsByClassName("current-forecast-desc")[0].text;
+
+    for (var i = 0; i < 7; i++) {
+      wkModel.day = wkDoc[i + 1].querySelectorAll('strong')[0].text;
+      wkModel.date = wkDoc[i + 1].querySelectorAll('div')[0].text;
+      wkModel.temp = wkTemp[i].querySelectorAll('span')[0].text;
+      listweekly.add(wkModel);
+    }
 
     listweather.add(model);
     return true;
