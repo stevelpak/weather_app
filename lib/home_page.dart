@@ -13,23 +13,25 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final items = [
-    'tashkent',
-    'andijan',
-    'bukhara',
-    'gulistan',
-    'jizzakh',
-    'zarafshan',
-    'karshi',
-    'navoi',
-    'namangan',
-    'nukus',
-    'samarkand',
-    'termez',
-    'urgench',
-    'ferghana',
-    'khiva',
+  var cities = [
+    'Tashkent',
+    'Andijan',
+    'Bukhara',
+    'Gulistan',
+    'Jizzakh',
+    'Zarafshan',
+    'Karshi',
+    'Navoi',
+    'Namangan',
+    'Nukus',
+    'Samarkand',
+    'Termez',
+    'Urgench',
+    'Ferghana',
+    'Khiva',
   ];
+
+  String dropDownValue = 'Tashkent';
 
   @override
   Widget build(BuildContext context) {
@@ -70,20 +72,29 @@ class _HomePageState extends State<HomePage> {
                           ),
                           Column(
                             children: [
-                              TextButton.icon(
-                                onPressed: () {},
-                                icon: Icon(
-                                  Icons.location_on_rounded,
-                                  color: locationClr,
-                                  size: 25,
-                                ),
-                                label: Text(
-                                  "Fergana",
-                                  style: TextStyle(
-                                    fontSize: 20,
-                                    color: topCityColor,
-                                    fontWeight: FontWeight.bold,
+                              DropdownButtonHideUnderline(
+                                child: DropdownButton(
+                                  menuMaxHeight: 300,
+                                  value: dropDownValue,
+                                  icon: const Visibility(
+                                    visible: false,
+                                    child: Icon(Icons.arrow_drop_down),
                                   ),
+                                  items: cities.map((String items) {
+                                    return DropdownMenuItem(
+                                      value: items,
+                                      child: Text(
+                                        items,
+                                        style: TextStyle(
+                                            fontSize: 20, color: topCityColor),
+                                      ),
+                                    );
+                                  }).toList(),
+                                  onChanged: (String? newValue) {
+                                    setState(() {
+                                      dropDownValue = newValue!;
+                                    });
+                                  },
                                 ),
                               ),
                               Container(
@@ -94,7 +105,7 @@ class _HomePageState extends State<HomePage> {
                                   borderRadius: BorderRadius.circular(8),
                                 ),
                                 child: Text(
-                                  "Yangilanmoqda°",
+                                  "Yangilandi°",
                                   style: TextStyle(
                                     color: white,
                                     fontSize: 10,
@@ -327,42 +338,42 @@ class _HomePageState extends State<HomePage> {
                                 listweekly[1].day!,
                                 listweekly[1].date!,
                                 "sunny",
-                                listweekly[0].temp!,
+                                listweekly[1].temp!,
                                 2,
                                 false),
                             weeklyButton(
                                 listweekly[2].day!,
                                 listweekly[2].date!,
                                 "sunny",
-                                listweekly[0].temp!,
+                                listweekly[2].temp!,
                                 42,
                                 false),
                             weeklyButton(
                                 listweekly[3].day!,
                                 listweekly[3].date!,
                                 "suncloud",
-                                listweekly[0].temp!,
+                                listweekly[3].temp!,
                                 72,
                                 false),
                             weeklyButton(
-                                listweekly[3].day!,
-                                listweekly[3].date!,
+                                listweekly[4].day!,
+                                listweekly[4].date!,
                                 "suncloud",
-                                listweekly[0].temp!,
+                                listweekly[4].temp!,
                                 72,
                                 false),
                             weeklyButton(
-                                listweekly[3].day!,
-                                listweekly[3].date!,
+                                listweekly[5].day!,
+                                listweekly[5].date!,
                                 "suncloud",
-                                listweekly[0].temp!,
+                                listweekly[5].temp!,
                                 72,
                                 false),
                             weeklyButton(
-                                listweekly[3].day!,
-                                listweekly[3].date!,
+                                listweekly[6].day!,
+                                listweekly[6].date!,
                                 "suncloud",
-                                listweekly[0].temp!,
+                                listweekly[6].temp!,
                                 72,
                                 false),
                           ],

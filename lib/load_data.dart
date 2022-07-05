@@ -8,7 +8,6 @@ final List<WeeklyModel> listweekly = [];
 
 Future<bool?> loadData() async {
   var model = WeatherModel();
-  var wkModel = WeeklyModel();
   var response = await get(Uri.parse("https://obhavo.uz/ferghana"));
 
   if (response.statusCode == 200) {
@@ -38,6 +37,7 @@ Future<bool?> loadData() async {
         document.getElementsByClassName("current-forecast-desc")[0].text;
 
     for (var i = 0; i < 7; i++) {
+      var wkModel = WeeklyModel();
       wkModel.day = wkDoc[i + 1].querySelectorAll('strong')[0].text;
       wkModel.date = wkDoc[i + 1].querySelectorAll('div')[0].text;
       wkModel.temp = wkTemp[i].querySelectorAll('span')[0].text;
