@@ -44,7 +44,7 @@ class _HomePageState extends State<HomePage> with HiveUtil {
 
           model.temp = tempDoc.querySelectorAll('strong')[0].text.substring(1);
           model.rain = docDetails[0].text.substring(8);
-          model.wind = docDetails[1].text.substring(8);
+          model.wind = docDetails[1].text.substring(8).split(",").last;
           model.pess = docDetails[2].text.substring(7, 11);
           model.moon = docDetails[3].text.substring(4);
           model.sun = docDetails[4].text.substring(17);
