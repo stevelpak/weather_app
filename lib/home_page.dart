@@ -149,7 +149,7 @@ class _HomePageState extends State<HomePage> with HiveUtil {
     "yomg'ir": "ic_rain",
   };
 
-  String dropDownValue = 'Ferghana';
+  String dropDownValue = 'Tashkent';
   String _pressed = "";
 
   @override
@@ -177,6 +177,7 @@ class _HomePageState extends State<HomePage> with HiveUtil {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             InkWell(
+                              onTap: (() {}),
                               child: Container(
                                 height: 50,
                                 width: 50,
@@ -200,22 +201,26 @@ class _HomePageState extends State<HomePage> with HiveUtil {
                                       visible: false,
                                       child: Icon(Icons.arrow_drop_down),
                                     ),
-                                    items: cities.map((String items) {
-                                      return DropdownMenuItem(
-                                        value: items,
-                                        child: Text(
-                                          items,
-                                          style: TextStyle(
-                                              fontSize: 20,
-                                              color: topCityColor),
-                                        ),
-                                      );
-                                    }).toList(),
+                                    items: cities.map(
+                                      (String items) {
+                                        return DropdownMenuItem(
+                                          value: items,
+                                          child: Text(
+                                            items,
+                                            style: TextStyle(
+                                                fontSize: 20,
+                                                color: topCityColor),
+                                          ),
+                                        );
+                                      },
+                                    ).toList(),
                                     onChanged: (String? newValue) {
-                                      setState(() {
-                                        dropDownValue = newValue!;
-                                        listweather.clear();
-                                      });
+                                      setState(
+                                        () {
+                                          dropDownValue = newValue!;
+                                          listweather.clear();
+                                        },
+                                      );
                                     },
                                   ),
                                 ),
