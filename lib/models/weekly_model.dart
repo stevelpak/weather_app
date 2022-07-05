@@ -1,5 +1,18 @@
-class WeeklyModel {
-  String? day, date, temp, desc, rainPer;
+import 'package:hive/hive.dart';
+part 'weekly_model.g.dart';
+
+@HiveType(typeId: 1)
+class WeeklyModel extends HiveObject {
+  @HiveField(0)
+  String? day;
+  @HiveField(1)
+  String? date;
+  @HiveField(2)
+  String? temp;
+  @HiveField(3)
+  String? desc;
+  @HiveField(4)
+  String? rainPer;
 
   WeeklyModel({
     this.day,

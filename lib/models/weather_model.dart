@@ -1,6 +1,28 @@
-class WeatherModel {
-  String? temp, rain, wind, pess, moon, sun, sunset, tempNight, curDay, desc;
-  List? weeklyForecast;
+import 'package:hive/hive.dart';
+part 'weather_model.g.dart';
+
+@HiveType(typeId: 0)
+class WeatherModel extends HiveObject {
+  @HiveField(0)
+  String? temp;
+  @HiveField(1)
+  String? rain;
+  @HiveField(2)
+  String? wind;
+  @HiveField(3)
+  String? pess;
+  @HiveField(4)
+  String? moon;
+  @HiveField(5)
+  String? sun;
+  @HiveField(6)
+  String? sunset;
+  @HiveField(7)
+  String? tempNight;
+  @HiveField(8)
+  String? curDay;
+  @HiveField(9)
+  String? desc;
 
   WeatherModel({
     this.temp,
@@ -13,7 +35,6 @@ class WeatherModel {
     this.tempNight,
     this.curDay,
     this.desc,
-    this.weeklyForecast,
   });
 
   WeatherModel.fromJson(Map<String, dynamic> json) {

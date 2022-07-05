@@ -56,3 +56,10 @@ BoxDecoration activeDay = BoxDecoration(
 BoxDecoration noActiveDay = BoxDecoration(
   borderRadius: BorderRadius.circular(33),
 );
+
+const String weatherBox = 'weather_box';
+const String weatherListKey = 'weather_list_key';
+const String weeklyBox = 'weekly_box';
+const String weeklyListKey = 'weekly_list_key';
+const String dateKey = 'date_key';
+const String dateBox = 'date_box';
